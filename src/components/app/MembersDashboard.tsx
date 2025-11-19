@@ -89,7 +89,7 @@ export default function MembersDashboard() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
           <div>
             <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Community Status</h2>
-            <p className="text-base text-muted-foreground">Who's active right now</p>
+            <p className="text-base text-muted-foreground">Who&apos;s active right now</p>
           </div>
           <Badge variant="secondary" className="text-sm px-4 py-1.5 animate-pulse-glow">
             {onlineCount} online

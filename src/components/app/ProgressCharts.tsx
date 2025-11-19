@@ -35,13 +35,13 @@ export default function ProgressCharts() {
   })), [group, progressByGroup]);
 
   return (
-    <section className="container mx-auto py-8 space-y-6">
-      <header>
-        <h2 className="text-2xl font-semibold">Progress Tracking</h2>
-        <p className="text-muted-foreground">Log your lifts and see trends for each muscle group.</p>
+    <section className="container mx-auto py-8 space-y-6 px-4">
+      <header className="text-center space-y-3">
+        <h2 className="text-3xl md:text-4xl font-bold text-gradient">Progress Tracking</h2>
+        <p className="text-lg text-muted-foreground">Log your lifts and see trends for each muscle group.</p>
       </header>
 
-      <Card className="card-elevated glass p-5">
+      <Card className="card-elevated glass p-6 interactive-hover">
         <form onSubmit={submit} className="grid md:grid-cols-6 gap-4">
           <div>
             <Label>Date</Label>
@@ -71,27 +71,27 @@ export default function ProgressCharts() {
             <Textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="How did it feel? Any PRs?" />
           </div>
           <div className="md:col-span-6">
-            <Button type="submit" variant="hero">Add Log</Button>
+            <Button type="submit" variant="hero" className="w-full md:w-auto gradient-animate">Add Log</Button>
           </div>
         </form>
       </Card>
 
-      <Card className="card-elevated glass p-5">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-xl font-semibold">Trend • {group}</h3>
+      <Card className="card-elevated glass p-6 interactive-hover">
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-2xl font-bold">Trend • {group}</h3>
         </div>
-        <div className="h-64">
+        <div className="h-80 rounded-lg bg-primary/5 p-4">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-              <XAxis dataKey="date" tick={{ fontSize: 12 }} />
-              <YAxis tick={{ fontSize: 12 }} />
-              <Tooltip />
-              <Line type="monotone" dataKey="weight" stroke="hsl(var(--primary))" strokeWidth={2} dot={false} />
+              <XAxis dataKey="date" tick={{ fontSize: 12 }} stroke="hsl(var(--muted-foreground))" />
+              <YAxis tick={{ fontSize: 12 }} stroke="hsl(var(--muted-foreground))" />
+              <Tooltip contentStyle={{ backgroundColor: 'hsl(var(--card))', border: '1px solid hsl(var(--border))' }} />
+              <Line type="monotone" dataKey="weight" stroke="hsl(var(--primary))" strokeWidth={3} dot={{ fill: 'hsl(var(--primary))', r: 5 }} activeDot={{ r: 7 }} />
             </LineChart>
           </ResponsiveContainer>
         </div>
         {data.length === 0 && (
-          <p className="text-sm text-muted-foreground mt-2">No entries yet. Log your first set above.</p>
+          <p className="text-base text-muted-foreground mt-4 text-center">📊 No entries yet. Log your first set above.</p>
         )}
       </Card>
     </section>

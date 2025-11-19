@@ -126,7 +126,7 @@ export default function Dashboard() {
               ))}
             </div>
           ) : (
-            <p className="text-base text-muted-foreground">🎉 Great job! You've trained all muscle groups in the last 7 days.</p>
+            <p className="text-base text-muted-foreground">🎉 Great job! You&apos;ve trained all muscle groups in the last 7 days.</p>
           )}
         </Card>
       </section>
