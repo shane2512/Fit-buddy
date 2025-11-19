@@ -85,36 +85,36 @@ export default function MembersDashboard() {
 
   return (
     <section className="container mx-auto px-4 md:px-0">
-      <Card className="glass card-elevated rounded-2xl p-6 md:p-8">
+      <Card className="glass card-elevated rounded-2xl p-6 md:p-8 interactive-hover">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
           <div>
-            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">Community Status</h2>
-            <p className="text-sm text-muted-foreground">Who's active right now</p>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Community Status</h2>
+            <p className="text-base text-muted-foreground">Who's active right now</p>
           </div>
-          <Badge variant="secondary" className="text-sm">
+          <Badge variant="secondary" className="text-sm px-4 py-1.5 animate-pulse-glow">
             {onlineCount} online
           </Badge>
         </div>
 
         {loading ? (
-          <div className="text-muted-foreground">Loading members…</div>
+          <div className="text-muted-foreground text-center py-8">Loading members…</div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
             {members.map((m) => (
               <div
                 key={m.id}
-                className="group rounded-2xl border bg-card p-4 shadow-sm transition-smooth hover:shadow-glow hover:scale-[1.01]"
+                className="group rounded-xl border bg-card p-4 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/40 hover:bg-primary/5"
               >
                 <div className="flex items-center gap-3">
                   <div className="relative">
-                    <Avatar className="h-12 w-12 ring-2 ring-ring/40">
+                    <Avatar className="h-12 w-12 ring-2 ring-ring/40 transition-all duration-300 group-hover:ring-primary/60">
                       <AvatarImage src={m.avatar_url ?? undefined} alt={`${m.name} avatar`} />
                       <AvatarFallback>{initials(m.name)}</AvatarFallback>
                     </Avatar>
-                    <span className={`absolute -bottom-1 -right-1 h-3 w-3 rounded-full border border-background ${statusDot[m.status]}`} />
+                    <span className={`absolute -bottom-1 -right-1 h-3 w-3 rounded-full border-2 border-background ${statusDot[m.status]} shadow-lg`} />
                   </div>
                   <div className="min-w-0">
-                    <div className="truncate font-medium">{m.name}</div>
+                    <div className="truncate font-semibold">{m.name}</div>
                     <div className="text-xs text-muted-foreground">{statusCopy[m.status]}</div>
                   </div>
                 </div>
