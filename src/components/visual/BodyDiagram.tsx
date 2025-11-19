@@ -86,17 +86,17 @@ const BodyDiagram = () => {
   };
 
   return (
-    <Card className="p-6 glass">
+    <Card className="p-6 md:p-8 glass card-elevated interactive-hover">
       <div className="flex flex-col xl:flex-row gap-6">
         {/* Body Diagrams */}
         <div className="flex-1">
-          <h3 className="text-xl font-semibold mb-6 text-center">Anatomical Progress Map</h3>
+          <h3 className="text-2xl md:text-3xl font-bold mb-6 text-center text-gradient">Anatomical Progress Map</h3>
           
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Front View */}
             <div className="relative">
-              <h4 className="text-lg font-medium mb-4 text-center">Front View</h4>
-              <div className="relative aspect-[3/4] bg-card rounded-2xl border border-border/50 overflow-hidden p-4">
+              <h4 className="text-xl font-semibold mb-4 text-center">Front View</h4>
+              <div className="relative aspect-[3/4] bg-card rounded-2xl border-2 border-border/50 overflow-hidden p-4 shadow-lg transition-all duration-300 hover:border-primary/30 hover:shadow-glow">
                 <svg viewBox="0 0 300 400" className="w-full h-full">
                   {/* Head */}
                   <ellipse cx="150" cy="40" rx="20" ry="25" fill="#E5E7EB" stroke="#D1D5DB" strokeWidth="1"/>
@@ -190,8 +190,8 @@ const BodyDiagram = () => {
 
             {/* Back View */}
             <div className="relative">
-              <h4 className="text-lg font-medium mb-4 text-center">Back View</h4>
-              <div className="relative aspect-[3/4] bg-card rounded-2xl border border-border/50 overflow-hidden p-4">
+              <h4 className="text-xl font-semibold mb-4 text-center">Back View</h4>
+              <div className="relative aspect-[3/4] bg-card rounded-2xl border-2 border-border/50 overflow-hidden p-4 shadow-lg transition-all duration-300 hover:border-primary/30 hover:shadow-glow">
                 <svg viewBox="0 0 300 400" className="w-full h-full">
                   {/* Head */}
                   <ellipse cx="150" cy="40" rx="20" ry="25" fill="#E5E7EB" stroke="#D1D5DB" strokeWidth="1"/>
@@ -278,44 +278,44 @@ const BodyDiagram = () => {
         </div>
 
         {/* Progress Legend & Stats */}
-        <div className="xl:w-80 space-y-4">
+        <div className="xl:w-80 space-y-6">
           <div className="space-y-3">
-            <h4 className="font-semibold">Progress Levels</h4>
+            <h4 className="font-bold text-lg">Progress Levels</h4>
             {[0, 1, 2, 3, 4, 5].map(level => (
-              <div key={level} className="flex items-center gap-3">
+              <div key={level} className="flex items-center gap-3 transition-all duration-300 hover:scale-105">
                 <div 
-                  className="w-4 h-4 rounded-full border"
+                  className="w-5 h-5 rounded-full border-2 border-white/20 shadow-lg"
                   style={{ backgroundColor: getIntensityColor(level) }}
                 />
-                <span className="text-sm">{getLevelLabel(level)}</span>
+                <span className="text-sm font-medium">{getLevelLabel(level)}</span>
               </div>
             ))}
           </div>
 
           <div className="space-y-3">
-            <h4 className="font-semibold">Muscle Progress</h4>
-            <div className="space-y-2 max-h-80 overflow-y-auto">
+            <h4 className="font-bold text-lg">Muscle Progress</h4>
+            <div className="space-y-2 max-h-80 overflow-y-auto pr-2 custom-scrollbar">
               {muscleData
                 .sort((a, b) => b.level - a.level)
                 .map(muscle => (
-                  <div key={muscle.name} className="flex items-center justify-between p-3 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors">
+                  <div key={muscle.name} className="flex items-center justify-between p-3 rounded-xl bg-muted/30 hover:bg-primary/10 transition-all duration-300 hover:scale-[1.02] hover:shadow-md border border-transparent hover:border-primary/30">
                     <div className="flex items-center gap-3">
                       <div 
-                        className="w-3 h-3 rounded-full border border-white/20"
+                        className="w-4 h-4 rounded-full border-2 border-white/30 shadow-md"
                         style={{ backgroundColor: getIntensityColor(muscle.level) }}
                       />
                       <div className="flex flex-col">
-                        <span className="text-sm font-medium">{muscle.name}</span>
+                        <span className="text-sm font-semibold">{muscle.name}</span>
                         <span className="text-xs text-muted-foreground">{muscle.group}</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Badge variant="secondary" className="text-xs">
+                      <Badge variant="secondary" className="text-xs font-medium">
                         {muscle.totalWorkouts}
                       </Badge>
                       <Badge 
                         variant="outline" 
-                        className="text-xs"
+                        className="text-xs font-medium"
                         style={{ borderColor: getIntensityColor(muscle.level) }}
                       >
                         {getLevelLabel(muscle.level)}

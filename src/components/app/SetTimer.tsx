@@ -66,9 +66,9 @@ export default function SetTimer() {
   };
 
   return (
-    <Card className="card-elevated glass p-4 flex flex-col gap-4">
+    <Card className="card-elevated glass p-6 flex flex-col gap-4 interactive-hover">
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold">Rest Timer</h3>
+        <h3 className="text-xl font-bold">Rest Timer</h3>
         <div className="text-sm text-muted-foreground">Between sets</div>
       </div>
       <div className="flex items-center gap-3">
@@ -86,19 +86,19 @@ export default function SetTimer() {
           className="w-24"
         />
       </div>
-      <div className="rounded-md border p-6 text-center">
+      <div className="rounded-lg border-2 border-primary/20 p-6 text-center bg-primary/5 shadow-inner">
         <div className="flex items-end justify-center gap-2">
           <Counter value={mins} fontSize={48} places={[10,1]} textColor="hsl(var(--primary))" />
-          <span className="text-4xl font-bold">:</span>
+          <span className="text-4xl font-bold text-primary">:</span>
           <Counter value={secs} fontSize={48} places={[10,1]} textColor="hsl(var(--primary))" />
         </div>
-        <div className="mt-3 h-2 w-full rounded bg-muted overflow-hidden">
-          <div className="h-full bg-primary" style={{ width: `${progress}%` }} />
+        <div className="mt-4 h-3 w-full rounded-full bg-muted overflow-hidden">
+          <div className="h-full bg-gradient-primary transition-all duration-300 rounded-full" style={{ width: `${progress}%` }} />
         </div>
       </div>
       <div className="flex flex-wrap gap-2">
         {!running && remaining === seconds && (
-          <Button variant="hero" onClick={start} className="flex-1">Start</Button>
+          <Button variant="hero" onClick={start} className="flex-1 gradient-animate">Start</Button>
         )}
         {running && (
           <Button variant="secondary" onClick={pause} className="flex-1">Pause</Button>
@@ -106,7 +106,7 @@ export default function SetTimer() {
         {!running && remaining !== seconds && remaining > 0 && (
           <Button variant="default" onClick={resume} className="flex-1">Resume</Button>
         )}
-        <Button variant="outline" onClick={reset} className="flex-1">Reset</Button>
+        <Button variant="outline" onClick={reset} className="flex-1 hover:border-primary/50">Reset</Button>
       </div>
     </Card>
   );

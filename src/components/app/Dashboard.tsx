@@ -30,16 +30,16 @@ export default function Dashboard() {
   const inactive = inactiveMuscleGroups(7);
 
   return (
-    <main className="container mx-auto py-8 space-y-8">
-      <header className="text-center space-y-3">
-        <h1 className="text-3xl md:text-4xl font-bold">Gym Workout Planner & Progress Tracker</h1>
-        <p className="text-muted-foreground">Plan your week, track each muscle group, and stay consistent.</p>
+    <main className="container mx-auto py-8 space-y-8 px-4">
+      <header className="text-center space-y-4 py-6">
+        <h1 className="text-4xl md:text-5xl font-bold text-gradient">Gym Workout Planner & Progress Tracker</h1>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Plan your week, track each muscle group, and stay consistent on your fitness journey.</p>
       </header>
 
       <section className="grid md:grid-cols-3 gap-6">
-        <Card className="card-elevated glass p-5 md:col-span-2">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold">Today • {todayName}</h2>
+        <Card className="card-elevated glass p-6 md:col-span-2 interactive-hover">
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="text-2xl font-bold">Today • {todayName}</h2>
             <div className="flex gap-2 flex-wrap">
               {todayGroups.length > 0 ? (
                 todayGroups.map((g) => (
@@ -53,17 +53,17 @@ export default function Dashboard() {
           {todaysPlan.exercises.length > 0 ? (
             <ul className="space-y-3">
               {todaysPlan.exercises.map((e) => (
-                <li key={e.id} className="flex items-center justify-between rounded border p-3">
+                <li key={e.id} className="flex items-center justify-between rounded-lg border p-4 transition-all duration-300 hover:bg-primary/5 hover:border-primary/30 hover:shadow-md">
                   <div>
-                    <div className="font-medium">{e.name}</div>
-                    <div className="text-xs text-muted-foreground">{e.sets} x {e.reps} {e.weight ? `• ${e.weight}kg` : ""}</div>
+                    <div className="font-semibold text-base">{e.name}</div>
+                    <div className="text-sm text-muted-foreground mt-1">{e.sets} x {e.reps} {e.weight ? `• ${e.weight}kg` : ""}</div>
                   </div>
-                  <Badge>{e.muscleGroup}</Badge>
+                  <Badge className="ml-2">{e.muscleGroup}</Badge>
                 </li>
               ))}
             </ul>
           ) : (
-            <div className="text-muted-foreground">No exercises planned today.</div>
+            <div className="text-muted-foreground text-center py-8">No exercises planned today. Take a well-deserved rest! 💪</div>
           )}
         </Card>
 
@@ -71,26 +71,26 @@ export default function Dashboard() {
       </section>
 
       <section className="grid md:grid-cols-2 gap-6">
-        <Card className="card-elevated glass p-5">
-          <h2 className="text-xl font-semibold mb-4">Weekly Plan Overview</h2>
+        <Card className="card-elevated glass p-6 interactive-hover">
+          <h2 className="text-2xl font-bold mb-5">Weekly Plan Overview</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {plan.map((d) => (
-              <div key={d.day} className="rounded border p-4">
-                <div className="font-medium">{d.day}</div>
-                <div className="text-sm text-muted-foreground">{d.exercises.length} exercise(s)</div>
+              <div key={d.day} className="rounded-lg border p-4 transition-all duration-300 hover:bg-primary/10 hover:border-primary/40 hover:scale-105">
+                <div className="font-semibold text-base">{d.day}</div>
+                <div className="text-sm text-muted-foreground mt-1">{d.exercises.length} exercise(s)</div>
               </div>
             ))}
           </div>
-          <div className="mt-4">
-            <Button variant="hero" asChild>
+          <div className="mt-6">
+            <Button variant="hero" asChild className="w-full gradient-animate">
               <a href="#plan">Build/Update Plan</a>
             </Button>
           </div>
         </Card>
 
-        <Card className="card-elevated glass p-5">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold">Progress • Muscle Group</h2>
+        <Card className="card-elevated glass p-6 interactive-hover">
+          <div className="flex items-center justify-between mb-5">
+            <h2 className="text-2xl font-bold">Progress • Muscle Group</h2>
             <Select value={group} onValueChange={(v) => setGroup(v as MuscleGroup)}>
               <SelectTrigger className="w-[180px]"><SelectValue /></SelectTrigger>
               <SelectContent>
@@ -117,16 +117,16 @@ export default function Dashboard() {
       </section>
 
       <section>
-        <Card className="card-elevated glass p-5">
-          <h2 className="text-xl font-semibold mb-3">Needs Attention</h2>
+        <Card className="card-elevated glass p-6 interactive-hover">
+          <h2 className="text-2xl font-bold mb-4">Needs Attention</h2>
           {inactive.length > 0 ? (
             <div className="flex flex-wrap gap-2">
               {inactive.map((g) => (
-                <Badge key={g} variant="outline">{g}</Badge>
+                <Badge key={g} variant="outline" className="transition-all duration-300 hover:scale-110 hover:bg-accent/20">{g}</Badge>
               ))}
             </div>
           ) : (
-            <p className="text-sm text-muted-foreground">Great job! You've trained all muscle groups in the last 7 days.</p>
+            <p className="text-base text-muted-foreground">🎉 Great job! You&apos;ve trained all muscle groups in the last 7 days.</p>
           )}
         </Card>
       </section>

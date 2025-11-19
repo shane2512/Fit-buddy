@@ -14,20 +14,20 @@ const Index = () => {
         <Hyperspeed effectOptions={hyperspeedPresets.one as any} />
       </div>
       <nav className="sticky top-0 z-10 nav-glass">
-        <div className="container mx-auto flex h-14 items-center justify-between">
-          <a href="/" className="font-semibold">Gym Planner</a>
-          <div className="hidden sm:flex gap-2">
-            <a href="#dashboard" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Dashboard</a>
-            <a href="#plan" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Plan</a>
-            <a href="#progress" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Progress</a>
+        <div className="container mx-auto flex h-16 items-center justify-between px-4">
+          <a href="/" className="font-bold text-xl text-gradient">Athelto</a>
+          <div className="hidden sm:flex gap-6">
+            <a href="#dashboard" className="text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-105">Dashboard</a>
+            <a href="#plan" className="text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-105">Plan</a>
+            <a href="#progress" className="text-sm font-medium text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-105">Progress</a>
           </div>
         </div>
       </nav>
-      <Tabs defaultValue="dashboard" className="container mx-auto py-6">
-        <TabsList className="glass">
-          <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
-          <TabsTrigger value="plan">Plan</TabsTrigger>
-          <TabsTrigger value="progress">Progress</TabsTrigger>
+      <Tabs defaultValue="dashboard" className="container mx-auto py-6 px-4">
+        <TabsList className="glass mb-8 p-1">
+          <TabsTrigger value="dashboard" className="transition-all duration-300">Dashboard</TabsTrigger>
+          <TabsTrigger value="plan" className="transition-all duration-300">Plan</TabsTrigger>
+          <TabsTrigger value="progress" className="transition-all duration-300">Progress</TabsTrigger>
         </TabsList>
         <TabsContent value="dashboard" id="dashboard"><div className="space-y-6"><MembersDashboard /><BodyDiagram /><Dashboard /></div></TabsContent>
         <TabsContent value="plan"><PlanBuilder /></TabsContent>
